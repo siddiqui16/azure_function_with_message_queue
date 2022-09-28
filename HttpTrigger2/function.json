@@ -20,7 +20,14 @@
       "type": "queue",
       "direction": "out",
       "name": "msg",
-      "queueName": "js-queue-items",
+      "queueName": "js-queue-items-input",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "msgout",
+      "queueName": "js-queue-items-output",
       "connection": "AzureWebJobsStorage"
     }
   ]
