@@ -1,5 +1,5 @@
 import logging
-
+import datetime
 import azure.functions as func
 
 
@@ -7,6 +7,8 @@ def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpRe
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
+    count = req.params.get('count')
+    count = int(count) if count else 5
     if not name:
         try:
             req_body = req.get_json()
@@ -15,8 +17,9 @@ def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpRe
         else:
             name = req_body.get('name')
 
-    txt = f"{name} is pushing into queue"
-    msg.set(txt)
+    for i in range(count):
+        txt = f"{name} is pushing into queue @ {datetime.datetime.utcnow()}"
+        msg.set(txt)
     
     if name:
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
