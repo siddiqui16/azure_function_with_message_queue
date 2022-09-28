@@ -3,7 +3,7 @@ import datetime
 import azure.functions as func
 
 
-def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpResponse:
+def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage], msg_out: func.Out[func.QueueMessage]) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
@@ -19,6 +19,7 @@ def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpRe
 
     txt = f"{name} {count} is pushing into queue @ {datetime.datetime.utcnow()}"
     msg.set(txt)
+    msg_out.set(txt)
     
     if name:
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
