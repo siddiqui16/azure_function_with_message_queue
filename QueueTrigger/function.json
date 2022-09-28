@@ -11,7 +11,7 @@
     {
       "type": "queue",
       "direction": "out",
-      "name": "msg",
+      "name": "msg_out",
       "queueName": "js-queue-items-result",
       "connection": "AzureWebJobsStorage"
     }
