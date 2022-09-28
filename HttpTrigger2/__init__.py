@@ -17,9 +17,8 @@ def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpRe
         else:
             name = req_body.get('name')
 
-    for i in range(count):
-        txt = f"{name} is pushing into queue @ {datetime.datetime.utcnow()}"
-        msg.set(txt)
+    txt = f"{name} {count} is pushing into queue @ {datetime.datetime.utcnow()}"
+    msg.set(txt)
     
     if name:
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
