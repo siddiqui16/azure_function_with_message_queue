@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     remote_req_url = "/".join(req.url.split("/")[:-1] + ["HttpTrigger2"])
     logging.info(f'Calling "{remote_req_url}" {count} times')
     for i in range(count):
-        responses += [requests.post(f"{remote_req_url}?name={name}&count={count}")]
+        responses += [requests.post(f"{remote_req_url}?name={name}&count={count*1000+i}")]
 
 
     if name:

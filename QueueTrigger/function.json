@@ -7,6 +7,13 @@
       "direction": "in",
       "queueName": "js-queue-items",
       "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "msg",
+      "queueName": "js-queue-items-result",
+      "connection": "AzureWebJobsStorage"
     }
   ]
 }
