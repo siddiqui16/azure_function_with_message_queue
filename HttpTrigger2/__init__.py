@@ -19,7 +19,13 @@ def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage], msgout: func.O
     count = int(count) if count else -1
 
     blob_file_id = f"{get_random_hash()}.json"
-    message_obj = {"name": name, "id":count, "timestamp":f"{datetime.datetime.utcnow()}", "blob_file_id": blob_file_id}
+    message_obj = {
+        "name": name, 
+        "id":count, 
+        "timestamp":f"{datetime.datetime.utcnow()}", 
+        "blob_file_id": blob_file_id,
+        "api_url": "/".join(req.url.split("/"))
+    }
     msg.set(json.dumps(message_obj))
     msgout.set(json.dumps(message_obj))
     

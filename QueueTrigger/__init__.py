@@ -15,4 +15,4 @@ def main(msg: func.QueueMessage, msgout: func.Out[func.QueueMessage]) -> None:
     res_str =  f"Result = {res:5}: {msg_content}"
     logging.info(res_str)
     msgout.set(res_str)
-    time.sleep(5)
+    time.sleep(15)
