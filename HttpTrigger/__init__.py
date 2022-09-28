@@ -18,8 +18,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     responses = []
+    remote_req_url = "/".join(req.url.split("/")[:-1] + ["HttpTrigger2"])
     for i in range(count):
-        responses += [requests.post(f"http://localhost:7071/api/HttpTrigger2?name={name}&count={count}")]
+        responses += [requests.post(f"{remote_req_url}?name={name}&count={count}")]
 
 
     if name:
